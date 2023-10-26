@@ -3,15 +3,27 @@
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
+    
+   
 }
+
+
 .slider-top{
- height: 90vh;
+ height: 80vh;
  background-color: aqua;
  width: 100vw;
 }
 
-.menu-top{
-    background-color: red;
-    height: 10vh;
+
+
+.quienes-somos{
     width: 100vw;
+    height: 300px;
+    background-color: bisque;
+    padding: 60px;
+    text-align: justify;
+}
+.quienes-somos h3{
+    font-size: 30px;
+    margin-bottom: 10px;
 }

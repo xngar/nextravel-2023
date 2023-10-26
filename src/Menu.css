@@ -1,0 +1,17 @@
+.menu-top{
+    display: flex;
+    background-color: red;
+    height: 10vh;
+    width: 99vw;
+    justify-content: space-between;
+    padding: 20px;
+
+    
+    
+
+}
+
+.menu-top ul{
+    display: flex;
+    gap: 10px;
+}
