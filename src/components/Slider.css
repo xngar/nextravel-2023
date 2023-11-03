@@ -1,0 +1,20 @@
+.slider-top{
+ 
+    background-color: aqua;
+    width: 100vw;
+    
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+    padding-left: 60px;
+   
+   }
+   
+   .slider-top img{
+       width: 500px;
+       position: absolute;
+       bottom: -100px;
+       z-index: 999;
+      
+   }
+   

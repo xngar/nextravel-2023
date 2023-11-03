@@ -1,0 +1,14 @@
+.quienes-somos{
+    width: 100vw;
+    height: 300px;
+    background-color:var(--naranjoclaro);
+    padding: 60px;
+    text-align: justify;
+    color: white;
+    position: relative;
+    z-index: 100;
+}
+.quienes-somos h3{
+    font-size: 30px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,31 @@
+
+.menu-top{
+    display: flex;
+    background-color: white;
+    height: 12vh;
+    flex:1;
+    justify-content: space-between;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 120px;
+    
+    width: 100vw;
+}
+
+.menu-top ul{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    color:var(--naranjo);
+
+}
+
+.menu-top ul > li{
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.logo img{
+    width: 170px;
+}
