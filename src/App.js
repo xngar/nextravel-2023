@@ -1,5 +1,6 @@
-
+import "./index.css";
 import './App.css';
+import Contactenos from './components/Contactenos';
 import Footer from './components/Footer';
 import { Menu } from './components/Menu';
 import QuienesSomos from './components/QuienesSomos';
@@ -11,6 +12,7 @@ function App() {
       <Menu />
       <Slider />
       <QuienesSomos />
+      <Contactenos />
       <Footer />
     </div>
   );
