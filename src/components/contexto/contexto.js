@@ -4,10 +4,10 @@ export const contexto = createContext();
 
 export default function ContextoGlobal({ children }) {
 
-    const [user, setUser] = useState("user");
+    const [token, setToken] = useState();
 
     return (
-        <contexto.Provider value={{ user, setUser }}>
+        <contexto.Provider value={{ token, setToken }}>
             {children}
         </contexto.Provider>
     )
