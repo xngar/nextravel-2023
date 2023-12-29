@@ -6,9 +6,7 @@ import { Menu } from './components/Menu';
 import QuienesSomos from './components/QuienesSomos';
 import Slider from './components/Slider';
 import { getBanners, 
-         getSlider, 
          obtenerToken, 
-         pedirMoneda, 
          getDestinos, 
          getProgramList, 
          getProgramDetail } from "./components/api/Api";
@@ -16,25 +14,26 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { contexto } from "./components/contexto/contexto";
+import Cookies from "universal-cookie";
 
 function App() {
-  const context = useContext(contexto)
-
+  //const context = useContext(contexto)
+  const cookie = new Cookies();
   const token2 = useQuery({
     queryKey: ["user"],
     queryFn: () => obtenerToken(),
   });
   const x = token2.data;
-
-  const currency = useQuery({
-   queryKey:['currency'],
-   queryFn: () => pedirMoneda(x.value)
-  });
   
-  const slider = useQuery({
-    queryKey:['sliders'],
-    queryFn: () => getSlider(x.value, 'CLP')
-  });
+  // const currency = useQuery({
+  //  queryKey:['currency'],
+  //  queryFn: () => pedirMoneda(x.value)
+  // });
+  
+  // const slider = useQuery({
+  //   queryKey:['sliders'],
+  //   queryFn: () => getSlider(x.value, cookie.get('CurrencyCode'))
+  // });
 
   const banners = useQuery({
     queryKey:['banners'],
@@ -48,14 +47,15 @@ function App() {
 
   const listaPrograma = useQuery({
     queryKey:['listaProgramas'],
-    queryFn: () => getProgramList(x.value, 17, 63, null)
+    queryFn: () => getProgramList(x.value, 17, 63, cookie.get('CurrencyCode'))
   });
   const programa = useQuery({
     queryKey:['program'],
-    queryFn: () => getProgramDetail(x.value, 6400, null)
+    queryFn: () => getProgramDetail(x.value, 6400, cookie.get('CurrencyCode'))
   });
   useEffect(()  =>  {
-    console.log('Cambio: ', currency.data);
+    cookie.set('token', token2.data?.value, {path:'/'});
+    console.log('Token: ', token2.data?.value);  
     console.log('Slider: ', slider.data);
    console.log('Banners: ', banners.data);
    console.log('Destinos: ', destinos.data);
