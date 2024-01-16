@@ -5,13 +5,15 @@ import Footer from './components/Footer';
 import { Menu } from './components/Menu';
 import QuienesSomos from './components/QuienesSomos';
 import Slider from './components/Slider';
-import { getBanners, 
-         getSlider, 
-         obtenerToken, 
-         pedirMoneda, 
-         getDestinos, 
-         getProgramList, 
-         getProgramDetail } from "./components/api/Api";
+import {
+  getBanners,
+  getSlider,
+  obtenerToken,
+  pedirMoneda,
+  getDestinos,
+  getProgramList,
+  getProgramDetail
+} from "./components/Api/Apis";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useContext } from "react";
@@ -25,43 +27,53 @@ function App() {
     queryFn: () => obtenerToken(),
   });
   const x = token2.data;
+  console.log(x);
+
+  //console.log(context.setToken(x));
+
+  console.log(context.token);
+  console.log(process.env.REACT_APP_PRODUCION)
 
   const currency = useQuery({
-   queryKey:['currency'],
-   queryFn: () => pedirMoneda(x.value)
+    queryKey: ['currency'],
+    queryFn: () => pedirMoneda(x.value)
   });
-  
+
+  console.log(currency);
+
+  //const mon = currency.data.CambioContado;
+
   const slider = useQuery({
-    queryKey:['sliders'],
+    queryKey: ['sliders'],
     queryFn: () => getSlider(x.value, 'CLP')
   });
 
   const banners = useQuery({
-    queryKey:['banners'],
+    queryKey: ['banners'],
     queryFn: () => getBanners(x.value)
   });
 
   const destinos = useQuery({
-    queryKey:['destinos'],
+    queryKey: ['destinos'],
     queryFn: () => getDestinos(x.value, 17)
   });
 
   const listaPrograma = useQuery({
-    queryKey:['listaProgramas'],
+    queryKey: ['listaProgramas'],
     queryFn: () => getProgramList(x.value, 17, 63, null)
   });
   const programa = useQuery({
-    queryKey:['program'],
+    queryKey: ['program'],
     queryFn: () => getProgramDetail(x.value, 6400, null)
   });
-  useEffect(()  =>  {
+  useEffect(() => {
     console.log('Cambio: ', currency.data);
     console.log('Slider: ', slider.data);
-   console.log('Banners: ', banners.data);
-   console.log('Destinos: ', destinos.data);
-   console.log('Program List: ', listaPrograma.data);
-   console.log('Programa: ', programa.data)
-     
+    console.log('Banners: ', banners.data);
+    console.log('Destinos: ', destinos.data);
+    console.log('Program List: ', listaPrograma.data);
+    console.log('Programa: ', programa.data)
+
   }, []);
 
 

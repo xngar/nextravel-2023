@@ -5,7 +5,7 @@ const QuienesSomos = () => {
     return (
         <div className='quienes-somos'>
 
-            <h3>¿Quiénes Somos?</h3>
+            <h3>¿Quiénes Somos? </h3>
             <p>
                 NEXT TRAVEL, Agencia de Viajes de Turismo, pone a su disposición nuestra gama de opciones de viajes como una herramienta de trabajo en el cual le podemos ofrecer servicios garantizados para lograr el mayor bienestar y placer en la realización de los diferentes viajes nacionales e internacionales.
 

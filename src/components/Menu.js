@@ -7,6 +7,7 @@ export const Menu = () => {
         <nav className='menu-top' >
             <div className='logo'>
                 <img src="./img/logo-next-travel.png" />
+
             </div>
             <div>
                 <ul>
