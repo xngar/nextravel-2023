@@ -1,8 +1,10 @@
-import React, {Component} from "react";
+import React, {Component, useContext} from "react";
+import { contexto } from "../components/contexto/contexto";
 //import Cookies  from "universal-cookie";
 
 
 const Currency = [{ item: "Dólar(USD)", value: "USD" }, { item: "Pesos (CLP)", value: "CLP" }];
+
 //const cookie = new Cookies();
 export class SelectCurrency extends Component{
     constructor(props){
@@ -11,8 +13,9 @@ export class SelectCurrency extends Component{
     }
 
     handleChange = e => {
-    
+        const context = useContext(contexto);
    // cookie.set('CurrencyCode', e.currentTarget.value, { path: '/'});
+       context.setCurrencyCode(e.currentTarget.value);
     };
 
     render(){

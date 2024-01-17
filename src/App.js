@@ -9,7 +9,6 @@ import {
   getBanners,
   getSlider,
   obtenerToken,
-  pedirMoneda,
   getDestinos,
   getProgramList,
   getProgramDetail
@@ -28,16 +27,6 @@ function App() {
 
 context.setToken(token.data);
  
-    const currency = useQuery({
-      queryKey: ['currency'],
-      queryFn: () => pedirMoneda(context.token?.value)
-    });
-  
-
-  console.log('Currency: ',currency.data);
-
-  //const mon = currency.data.CambioContado;
-
   const slider = useQuery({
     queryKey: ['sliders'],
     queryFn: () => getSlider(context.token?.value, 'CLP')
@@ -75,7 +64,7 @@ context.setToken(token.data);
 
   return (
     <div className="App">
-      <Menu />
+      <Menu token={context.token?.value}/>
       <Slider />
       <QuienesSomos />
       <Contactenos />
