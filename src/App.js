@@ -13,35 +13,26 @@ import {
   getDestinos,
   getProgramList,
   getProgramDetail
-} from "./components/Api/Apis";
+} from "./components/api/Api";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { contexto } from "./components/contexto/contexto";
+import Cookies from "universal-cookie";
 
 function App() {
-  const context = useContext(contexto)
-
+  //const context = useContext(contexto)
+  const cookie = new Cookies();
   const token2 = useQuery({
     queryKey: ["user"],
     queryFn: () => obtenerToken(),
   });
   const x = token2.data;
-  console.log(x);
-
-  //console.log(context.setToken(x));
-
-  console.log(context.token);
-  console.log(process.env.REACT_APP_PRODUCION)
 
   const currency = useQuery({
     queryKey: ['currency'],
     queryFn: () => pedirMoneda(x.value)
   });
-
-  console.log(currency);
-
-  //const mon = currency.data.CambioContado;
 
   const slider = useQuery({
     queryKey: ['sliders'],
