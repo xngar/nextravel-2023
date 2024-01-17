@@ -1,34 +1,26 @@
-import { useContext } from "react";
-import { contexto } from "../contexto/contexto";
+import React from "react";
 
-const Apis = () => {
-    const context1 = useContext(contexto);
 
-    // Resto del código...
-    //pedirMoneda(context1);
-    return (
-        <div>api</div>
-    );
-};
+
+export const Apis = () => {
+return(<></>)
+}
 
 const obtenerToken = async () => {
+    
     let rawLogin = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ Username: "Test1", Password: "testing.2022" }),
+        body: JSON.stringify({ Username: process.env.REACT_APP_API_TURISCLUB_USERNAME, 
+                               Password: process.env.REACT_APP_API_TURISCLUB_PASSWORD }),
     };
-    var retorno = await fetch("https://apirest.turisclub.cl/api/auth", rawLogin);
+    var retorno = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/auth`, rawLogin);
     var respuesta = await retorno.json();
+   
     return respuesta;
-    // return fetch("https://apirest.turisclub.cl/api/auth", rawLogin)
-    //     .then((respuesta) => respuesta.json())
-    //     .then((data) => data)
-    //     .catch((err) => console.log("error en la peticion"))
-    //     .finally(() => {
-    //         console.log("se cargo la informacion completa.");
-    //     });
+  
 };
 
 const pedirMoneda = async (token) => {
@@ -48,7 +40,7 @@ const pedirMoneda = async (token) => {
 
 
 
-    var result = await fetch(process.env.REACT_APP_DEVELOP + "/api/Parameters/Valores", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Parameters/Valores`, configuracion);
     var response = await result.json();
     return response.entities[0];
     // return fetch("https://apirest.turisclub.cl/api/Parameters/Valores", configuracion)
@@ -74,7 +66,7 @@ const getSlider = async (token, CurrencyCode) => {
         }),
     };
 
-    var result = await fetch("https://apirest.turisclub.cl/api/Definitions/Banners", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Definitions/Banners`, configuracion);
     var response = await result.json();
     return response.entities;
 }
@@ -93,7 +85,7 @@ const getBanners = async (token) => {
         }),
     };
 
-    var result = await fetch("https://apirest.turisclub.cl/api/Definitions/Banners", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Definitions/Banners`, configuracion);
     var response = await result.json();
     return response.entities;
 }
@@ -110,7 +102,7 @@ const getDestinos = async (token, IDArea) => {
         }),
     };
 
-    var result = await fetch("https://apirest.turisclub.cl/api/Definitions/Areas", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Definitions/Areas`, configuracion);
     var response = await result.json();
     return response.entities;
 }
@@ -128,7 +120,7 @@ const getProgramList = async (token, IDArea, IDDestino, CurrencyCode) => {
         }),
     };
 
-    var result = await fetch("https://apirest.turisclub.cl/api/Programs/List", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Programs/List`, configuracion);
     var response = await result.json();
     return response.entities;
 }
@@ -143,7 +135,7 @@ const getProgramDetail = async (token, IDPrograma, CurrencyCode) => {
         }
     };
 
-    var result = await fetch(`https://apirest.turisclub.cl/api/Programs/retrieve/${IDPrograma}/${CurrencyCode == null ? 'USD' : CurrencyCode}`, configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Programs/retrieve/${IDPrograma}/${CurrencyCode == null ? 'USD' : CurrencyCode}`, configuracion);
     var response = await result.json();
 
     return response.entity;

@@ -13,61 +13,56 @@ import {
   getDestinos,
   getProgramList,
   getProgramDetail
-} from "./components/Api/Apis";
+} from "./components/api/Apis";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { contexto } from "./components/contexto/contexto";
 
 function App() {
-  const context = useContext(contexto)
+   const context = useContext(contexto)
 
-  const token2 = useQuery({
+  const token = useQuery({
     queryKey: ["user"],
     queryFn: () => obtenerToken(),
   });
-  const x = token2.data;
-  console.log(x);
 
-  //console.log(context.setToken(x));
+context.setToken(token.data);
+ 
+    const currency = useQuery({
+      queryKey: ['currency'],
+      queryFn: () => pedirMoneda(context.token?.value)
+    });
+  
 
-  console.log(context.token);
-  console.log(process.env.REACT_APP_PRODUCION)
-
-  const currency = useQuery({
-    queryKey: ['currency'],
-    queryFn: () => pedirMoneda(x.value)
-  });
-
-  console.log(currency);
+  console.log('Currency: ',currency.data);
 
   //const mon = currency.data.CambioContado;
 
   const slider = useQuery({
     queryKey: ['sliders'],
-    queryFn: () => getSlider(x.value, 'CLP')
+    queryFn: () => getSlider(context.token?.value, 'CLP')
   });
 
   const banners = useQuery({
     queryKey: ['banners'],
-    queryFn: () => getBanners(x.value)
+    queryFn: () => getBanners(context.token?.value)
   });
 
   const destinos = useQuery({
     queryKey: ['destinos'],
-    queryFn: () => getDestinos(x.value, 17)
+    queryFn: () => getDestinos(context.token?.value, 17)
   });
 
   const listaPrograma = useQuery({
     queryKey: ['listaProgramas'],
-    queryFn: () => getProgramList(x.value, 17, 63, null)
+    queryFn: () => getProgramList(context.token?.value, 17, 63, null)
   });
   const programa = useQuery({
     queryKey: ['program'],
-    queryFn: () => getProgramDetail(x.value, 6400, null)
+    queryFn: () => getProgramDetail(context.token?.value, 6400, null)
   });
   useEffect(() => {
-    console.log('Cambio: ', currency.data);
+    //console.log('Cambio: ', currency.data);
     console.log('Slider: ', slider.data);
     console.log('Banners: ', banners.data);
     console.log('Destinos: ', destinos.data);
