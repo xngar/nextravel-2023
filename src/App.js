@@ -65,7 +65,7 @@ context.setToken(token.data);
   return (
     <div className="App">
       <Menu token={context.token?.value}/>
-      <Slider />
+      <Slider token={context.token?.value}/>
       <QuienesSomos />
       <Contactenos />
       <Footer />
