@@ -1,13 +1,32 @@
 
 .wrapperDestinos{
-    padding-left: 50px;
-    padding-right: 50px;
+   
     
-    height: 400px;
-    background-color: blue;
+    
+    background-color: white;
     
 }
 
 .container{
     background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.container figure{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.container figure img {
+    
+    position: relative;
+}
+
+.container figure span{
+    position: absolute;
+    
+  
 }
