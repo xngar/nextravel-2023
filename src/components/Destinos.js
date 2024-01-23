@@ -6,7 +6,7 @@ const Destinos = () => {
         <div className='wrapperDestinos'>
             <div className='container'>
 
-                Destinos
+                Agregando nuevo texto
             </div>
         </div>
     )
