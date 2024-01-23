@@ -18,6 +18,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { contexto } from "./components/contexto/contexto";
+import Destinos from "./components/Destinos";
 
 function App() {
   const context = useContext(contexto)
@@ -26,6 +27,7 @@ function App() {
     queryKey: ["user"],
     queryFn: () => obtenerToken(),
   });
+
   const x = token2.data;
   console.log(x);
 
@@ -83,6 +85,7 @@ function App() {
       <Menu />
       <Slider />
       <QuienesSomos />
+      <Destinos />
       <Contactenos />
       <Footer />
     </div>
