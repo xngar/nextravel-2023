@@ -4,7 +4,7 @@ import { SelectCurrency } from '../utils/SelectCurrency';
 import { Change } from '../utils/Change';
 
 
-export const Menu = (token) => {
+export const Menu = () => {
     return (
         <nav className='menu-top' >
             <div className='logo'>
@@ -13,7 +13,7 @@ export const Menu = (token) => {
             </div>
             <div>
                 <ul>
-                    <Change token={token}/>
+                    <Change />
                     <li>Home</li>
                     <li>¿Quienes somos?</li>
                     <li>Destinos</li>

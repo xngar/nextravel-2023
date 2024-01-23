@@ -1,75 +1,27 @@
+import React, { useEffect,useState } from "react";
 import "./index.css";
 import './App.css';
 import Contactenos from './components/Contactenos';
 import Footer from './components/Footer';
 import { Menu } from './components/Menu';
 import QuienesSomos from './components/QuienesSomos';
-import Slider from './components/Slider';
-import {
-  getBanners,
-  getSlider,
-  obtenerToken,
-  getDestinos,
-  getProgramList,
-  getProgramDetail
-} from "./components/api/Apis";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useContext } from "react";
-import { contexto } from "./components/contexto/contexto";
+import {Slider} from './components/Slider';
+
+
+import { ContextoDatos } from "./components/contexto/ContextoDatos";
 
 function App() {
-   const context = useContext(contexto)
 
-  const token = useQuery({
-    queryKey: ["user"],
-    queryFn: () => obtenerToken(),
-  });
-
-context.setToken(token.data);
- 
-  const slider = useQuery({
-    queryKey: ['sliders'],
-    queryFn: () => getSlider(context.token?.value, 'CLP')
-  });
-
-  const banners = useQuery({
-    queryKey: ['banners'],
-    queryFn: () => getBanners(context.token?.value)
-  });
-
-  const destinos = useQuery({
-    queryKey: ['destinos'],
-    queryFn: () => getDestinos(context.token?.value, 17)
-  });
-
-  const listaPrograma = useQuery({
-    queryKey: ['listaProgramas'],
-    queryFn: () => getProgramList(context.token?.value, 17, 63, null)
-  });
-  const programa = useQuery({
-    queryKey: ['program'],
-    queryFn: () => getProgramDetail(context.token?.value, 6400, null)
-  });
-  useEffect(() => {
-    //console.log('Cambio: ', currency.data);
-    console.log('Slider: ', slider.data);
-    console.log('Banners: ', banners.data);
-    console.log('Destinos: ', destinos.data);
-    console.log('Program List: ', listaPrograma.data);
-    console.log('Programa: ', programa.data)
-
-  }, []);
-
-
-
-  return (
-    <div className="App">
-      <Menu token={context.token?.value}/>
-      <Slider token={context.token?.value}/>
-      <QuienesSomos />
-      <Contactenos />
-      <Footer />
-    </div>
+ return (
+  <ContextoDatos>
+      <div className="App">
+        <Menu />
+        <Slider />
+        <QuienesSomos />
+        <Contactenos />
+        <Footer />
+      </div>
+  </ContextoDatos>
   );
 }
 

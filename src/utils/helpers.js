@@ -1,14 +1,15 @@
 //import Cookies from "universal-cookie";
-import { useContext } from "react";
-import { contexto } from "../components/contexto/contexto";
-
+// import { useContext } from "react";
+// import { contexto } from "../components/contexto/contexto";
+import { useCurrencyContext } from "../components/contexto/ContextoDatos";
 //const cookie = new Cookies();
-const context = useContext(contexto);
+
 
 export const CurrencySeleted =()=> {
-    return $('#selectCurrency').val() || context.currencyCode || 'USD';
+    const currencyCode = useCurrencyContext();
+    return currencyCode == null ? 'USD' : currencyCode ;
 }
 
-export const OnCurrencyChanged = (callback) => {
-    $('#selectCurrency').on('change', callback);
-}
+// export const OnCurrencyChanged = (callback) => {
+//     $('#selectCurrency').on('change', callback);
+// }

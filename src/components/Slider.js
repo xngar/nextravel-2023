@@ -1,45 +1,41 @@
-import React from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { useQuery } from "@tanstack/react-query";
 import { getSlider} from './api/Apis';
-import "./Slider.css";
-const Slider = (token) => {
-//console.log('Token recibido: ', token.token)
-    const slider = useQuery({
-        queryKey:['slider'],
-        queryFn: () => getSlider(token.token)   
-     });
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { CurrencySeleted } from '../utils/helpers';
+import { useTokenContext, useCurrencyContext } from './contexto/ContextoDatos';
 
-//console.log('Sliders: ', slider.data);
+
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0
+})
+
+export const Slider = () => {
+const token = useTokenContext();
+const curren = useCurrencyContext();
+   const [slider, setSlider] = useState([]);
+
+    const carrousel = useQuery({
+        queryKey:['slider'],
+        queryFn: () => getSlider(token, curren)   
+     });
 
 
     return (<>
-      <div id="banner" className="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
-
-<div className="carousel-inner" role="listbox">
-    {slider.data?.map((item, i) => {
-        return <div key={i} className={i === 0 ? 'item active' : 'item'} style={{ backgroundImage: item.Nomenclador === "" ? `url("/upload/${item.Src}")` : `url("${process.env.REACT_APP_TURISCLUB_PATH_MEDIA}${item.Src}")`, cursor: 'pointer' }}>
-            <div className="caption-info">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-sm-12 col-md-8 col-md-offset-2">
-                            <div className="caption-info-inner text-center">
-                                <h1 className={"animated " + (i % 2 ? "fadeInDown" : "zoomIn")}>{item.Titulo}</h1>
-                                {item.ProgramaPrecioTxt === null ? <p></p> : <p className={"animated " + (i % 2 ? "fadeInUp" : "zoomIn")}>{item.ProgramaPrecioTxt}<span className="span-price"> {item.ProgramaPrecioUSD}</span></p>
-                                    }
-                                <a href="#" className={"animated " + (i % 2 ? "fadeInUp" : "zoomIn") + " btn btn-primary page-scroll"}>Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    })}
-
-</div>
-<a className="control left" href="#banner" data-slide="prev"><i className="fa fa-long-arrow-left"></i></a>
-<a className="right control" href="#banner" data-slide="next"><i className="fa fa-long-arrow-right"></i></a>
-</div>
+     <Swiper
+      spaceBetween={50}
+      slidesPerView={1}
+      autoplay={3000}>
+        {carrousel.data?.map((item, i) => {
+             return <SwiperSlide key={i}>
+                <img src={`${process.env.REACT_APP_TURISCLUB_PATH_MEDIA}${item.Src}`}></img>
+                <p>{item && item.ProgramaPrecioTxt} {formatter.format(item.ProgramaPrecioUSD).replace("$", `${CurrencySeleted()} `).replace(",", ".")}</p>
+             </SwiperSlide>
+        })}
+     </Swiper>
+    
     </>)
 }
-
-export default Slider
