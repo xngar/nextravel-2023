@@ -25,7 +25,7 @@ const obtenerToken = async () => {
 
 const pedirMoneda = async (token) => {
 
-    console.log("recibo", token);
+  
     const configuracion = {
         method: "POST",
         headers: {

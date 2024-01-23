@@ -10,10 +10,10 @@ import { useQuery } from "@tanstack/react-query";
         const curencyCode = useCurrencyContext();
         const currency = useQuery({
                 queryKey:['currency'],
-                queryFn: () => pedirMoneda(token, curencyCode)   
+                queryFn: () => pedirMoneda(token)   
              });
   
         return(<>
-                <p>{currency && `Cambio Contado: $${currency.data?.CambioContado} | Cambio Crédito: $${currency.data?.CambioCredito}`}</p>
+            {currency && <p>{`Cambio Contado: $${currency.data?.CambioContado} | Cambio Crédito: $${currency.data?.CambioCredito}`}</p>}    
         </>);
 }

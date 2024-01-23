@@ -28,7 +28,7 @@ const token = useQuery({
 useEffect (()=>{
     const t = token;
     setAuth(t.data?.value)
-})
+},[])
   
     return(<tokenContext.Provider value={auth}>
         <currencyContext.Provider value={currencyCode}>
