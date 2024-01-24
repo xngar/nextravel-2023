@@ -6,27 +6,24 @@ export const Apis = () => {
 return(<></>)
 }
 
-const obtenerToken = async () => {
-    
+export const obtenerToken = async () => {
     let rawLogin = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ Username: process.env.REACT_APP_API_TURISCLUB_USERNAME, 
-                               Password: process.env.REACT_APP_API_TURISCLUB_PASSWORD }),
+        body: JSON.stringify({ 
+            Username: process.env.REACT_APP_API_TURISCLUB_USERNAME, 
+            Password: process.env.REACT_APP_API_TURISCLUB_PASSWORD }),
     };
     var retorno = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/auth`, rawLogin);
     var respuesta = await retorno.json();
   
     return respuesta;
-  
-};
+ };
 
-const pedirMoneda = async (token) => {
-
-  
-    const configuracion = {
+export const pedirMoneda = async (token) => {
+  const configuracion = {
         method: "POST",
         headers: {
             Authorization: "Bearer " + token,
@@ -37,22 +34,13 @@ const pedirMoneda = async (token) => {
             Sort: ["Id DESC"],
         }),
     };
-
-
-
     var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Parameters/Valores`, configuracion);
     var response = await result.json();
     return response.entities[0];
-    // return fetch("https://apirest.turisclub.cl/api/Parameters/Valores", configuracion)
-    //     .then((respuesta) => respuesta.json())
-    //     .then((data) => data)
-    //     .catch((err) => console.log(err))
-    //     .finally(() => {
-
-    //     });
+    
 };
 
-const getSlider = async (token, CurrencyCode) => {
+export const getSlider = async (token, CurrencyCode) => {
     const configuracion = {
         method: "POST",
         headers: {
@@ -71,7 +59,7 @@ const getSlider = async (token, CurrencyCode) => {
     return response.entities;
 }
 
-const getBanners = async (token) => {
+export const getBanners = async (token) => {
     const configuracion = {
         method: "POST",
         headers: {
@@ -90,7 +78,7 @@ const getBanners = async (token) => {
     return response.entities;
 }
 
-const getDestinos = async (token, IDArea) => {
+export const getDestinos = async (token, IDArea) => {
     const configuracion = {
         method: "POST",
         headers: {
@@ -107,7 +95,7 @@ const getDestinos = async (token, IDArea) => {
     return response.entities;
 }
 
-const getProgramList = async (token, IDArea, IDDestino, CurrencyCode) => {
+export const getProgramList = async (token, IDArea, IDDestino, CurrencyCode) => {
     const configuracion = {
         method: "POST",
         headers: {
@@ -125,7 +113,7 @@ const getProgramList = async (token, IDArea, IDDestino, CurrencyCode) => {
     return response.entities;
 }
 
-const getProgramDetail = async (token, IDPrograma, CurrencyCode) => {
+export const getProgramDetail = async (token, IDPrograma, CurrencyCode) => {
 
     const configuracion = {
         method: "GET",
@@ -141,5 +129,5 @@ const getProgramDetail = async (token, IDPrograma, CurrencyCode) => {
     return response.entity;
 }
 
-export { obtenerToken, pedirMoneda, getSlider, getBanners, getDestinos, getProgramList, getProgramDetail };
+
 export default Apis;

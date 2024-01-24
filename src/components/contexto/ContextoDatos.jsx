@@ -19,17 +19,18 @@ export function useCurrencyContext(){
 export function ContextoDatos(props){
 
     const [auth, setAuth] = useState('');
-    const [currencyCode, setCurrencyCode] = useState('USD'); 
+    const [currencyCode, setCurrencyCode] = useState(''); 
 
 const token = useQuery({
     queryKey: ["user"],
     queryFn: () => obtenerToken()
   });
+
+
 useEffect (()=>{
-    const t = token;
-    setAuth(t.data?.value)
-},[])
-  
+    setAuth(token.data?.value)
+}, []);
+console.log('Token en Component ContextoDatos: ', token.data?.value)
     return(<tokenContext.Provider value={auth}>
         <currencyContext.Provider value={currencyCode}>
             {props.children}

@@ -4,16 +4,16 @@ import { SelectCurrency } from '../utils/SelectCurrency';
 import { Change } from '../utils/Change';
 
 
-export const Menu = () => {
+export const Menu = ({change}) => {
     return (
         <nav className='menu-top' >
             <div className='logo'>
-                <img src="./img/logo-next-travel.png" />
+                <img src="./img/logo-next-travel.png" alt=''/>
 
             </div>
             <div>
                 <ul>
-                    <Change />
+                    <Change change={change}/>
                     <li>Home</li>
                     <li>¿Quienes somos?</li>
                     <li>Destinos</li>

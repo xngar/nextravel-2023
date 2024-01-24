@@ -1,5 +1,4 @@
-import React, {Component, useContext} from "react";
-import { contexto } from "../components/contexto/contexto";
+import React, {Component} from "react";
 
 const Currency = [{ item: "Dólar(USD)", value: "USD" }, { item: "Pesos (CLP)", value: "CLP" }];
 
@@ -11,8 +10,7 @@ export class SelectCurrency extends Component{
     }
 
     handleChange = e => {
-       const context = useContext(contexto);
-       context.setCurrencyCode(e.currentTarget.value);
+     console.log('Capturamos el Evento: ', e.target.value)
     };
 
     render(){
