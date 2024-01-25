@@ -24,7 +24,7 @@ export const Slider = ({items}) => {
         clickable: true,
       }}
       navigation
-      //scrollbar={{ draggable: true }}
+      scrollbar={{ draggable: true }}
       >
         {items.data?.map((item, i) => {
              return <SwiperSlide key={i} style={{height:'90vh'}}>

@@ -6,7 +6,7 @@ export const Apis = () => {
 return(<></>)
 }
 
-export const obtenerToken = async () => {
+ export const obtenerToken = async () => {
     let rawLogin = {
         method: "POST",
         headers: {
@@ -22,11 +22,15 @@ export const obtenerToken = async () => {
     return respuesta;
  };
 
-export const pedirMoneda = async (token) => {
+export const pedirMoneda = async () => {
+    var token = await obtenerToken().then( auth => auth);
+    console.log('Token en Clase Apis: ',token.value);
+
+   
   const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -40,11 +44,12 @@ export const pedirMoneda = async (token) => {
     
 };
 
-export const getSlider = async (token, CurrencyCode) => {
+export const getSlider = async (CurrencyCode) => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -59,11 +64,12 @@ export const getSlider = async (token, CurrencyCode) => {
     return response.entities;
 }
 
-export const getBanners = async (token) => {
+export const getBanners = async () => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -78,11 +84,12 @@ export const getBanners = async (token) => {
     return response.entities;
 }
 
-export const getDestinos = async (token, IDArea) => {
+export const getDestinos = async ( IDArea) => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -95,11 +102,12 @@ export const getDestinos = async (token, IDArea) => {
     return response.entities;
 }
 
-export const getProgramList = async (token, IDArea, IDDestino, CurrencyCode) => {
+export const getProgramList = async (IDArea, IDDestino, CurrencyCode) => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -113,12 +121,12 @@ export const getProgramList = async (token, IDArea, IDDestino, CurrencyCode) => 
     return response.entities;
 }
 
-export const getProgramDetail = async (token, IDPrograma, CurrencyCode) => {
-
+export const getProgramDetail = async (IDPrograma, CurrencyCode) => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "GET",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         }
     };
