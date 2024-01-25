@@ -3,7 +3,7 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { CurrencySeleted } from '../utils/helpers';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFlip } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFlip, EffectCards, EffectCoverflow } from 'swiper/modules';
 
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -15,7 +15,7 @@ export const Slider = ({items}) => {
   
     return (<>
      <Swiper
-     modules={[Navigation, Pagination, Scrollbar, A11y, EffectFlip, Autoplay]}
+     modules={[Navigation, Pagination, Scrollbar, A11y, EffectFlip, EffectCards, EffectCoverflow, Autoplay]}
       spaceBetween={50}
       slidesPerView={1}
       effect='flip'

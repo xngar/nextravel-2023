@@ -24,9 +24,6 @@ return(<></>)
 
 export const pedirMoneda = async () => {
     var token = await obtenerToken().then( auth => auth);
-    console.log('Token en Clase Apis: ',token.value);
-
-   
   const configuracion = {
         method: "POST",
         headers: {
