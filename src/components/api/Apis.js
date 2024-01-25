@@ -1,43 +1,33 @@
-import { useContext } from "react";
-import { contexto } from "../contexto/contexto";
+import React from "react";
 
-const Apis = () => {
-    const context1 = useContext(contexto);
 
-    // Resto del código...
-    //pedirMoneda(context1);
-    return (
-        <div>api</div>
-    );
-};
 
-const obtenerToken = async () => {
+export const Apis = () => {
+return(<></>)
+}
+
+ export const obtenerToken = async () => {
     let rawLogin = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ Username: "Test1", Password: "testing.2022" }),
+        body: JSON.stringify({ 
+            Username: process.env.REACT_APP_API_TURISCLUB_USERNAME, 
+            Password: process.env.REACT_APP_API_TURISCLUB_PASSWORD }),
     };
-    var retorno = await fetch("https://apirest.turisclub.cl/api/auth", rawLogin);
+    var retorno = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/auth`, rawLogin);
     var respuesta = await retorno.json();
+  
     return respuesta;
-    // return fetch("https://apirest.turisclub.cl/api/auth", rawLogin)
-    //     .then((respuesta) => respuesta.json())
-    //     .then((data) => data)
-    //     .catch((err) => console.log("error en la peticion"))
-    //     .finally(() => {
-    //         console.log("se cargo la informacion completa.");
-    //     });
-};
+ };
 
-const pedirMoneda = async (token) => {
-
-    console.log("recibo", token);
-    const configuracion = {
+export const pedirMoneda = async () => {
+    var token = await obtenerToken().then( auth => auth);
+  const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -45,26 +35,18 @@ const pedirMoneda = async (token) => {
             Sort: ["Id DESC"],
         }),
     };
-
-
-
-    var result = await fetch(process.env.REACT_APP_DEVELOP + "/api/Parameters/Valores", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Parameters/Valores`, configuracion);
     var response = await result.json();
     return response.entities[0];
-    // return fetch("https://apirest.turisclub.cl/api/Parameters/Valores", configuracion)
-    //     .then((respuesta) => respuesta.json())
-    //     .then((data) => data)
-    //     .catch((err) => console.log(err))
-    //     .finally(() => {
-
-    //     });
+    
 };
 
-const getSlider = async (token, CurrencyCode) => {
+export const getSlider = async (CurrencyCode) => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -74,16 +56,17 @@ const getSlider = async (token, CurrencyCode) => {
         }),
     };
 
-    var result = await fetch("https://apirest.turisclub.cl/api/Definitions/Banners", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Definitions/Banners`, configuracion);
     var response = await result.json();
     return response.entities;
 }
 
-const getBanners = async (token) => {
+export const getBanners = async () => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -93,16 +76,17 @@ const getBanners = async (token) => {
         }),
     };
 
-    var result = await fetch("https://apirest.turisclub.cl/api/Definitions/Banners", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Definitions/Banners`, configuracion);
     var response = await result.json();
     return response.entities;
 }
 
-const getDestinos = async (token, IDArea) => {
+export const getDestinos = async ( IDArea) => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -110,16 +94,17 @@ const getDestinos = async (token, IDArea) => {
         }),
     };
 
-    var result = await fetch("https://apirest.turisclub.cl/api/Definitions/Areas", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Definitions/Areas`, configuracion);
     var response = await result.json();
     return response.entities;
 }
 
-const getProgramList = async (token, IDArea, IDDestino, CurrencyCode) => {
+export const getProgramList = async (IDArea, IDDestino, CurrencyCode) => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         },
         body: JSON.stringify({
@@ -128,26 +113,26 @@ const getProgramList = async (token, IDArea, IDDestino, CurrencyCode) => {
         }),
     };
 
-    var result = await fetch("https://apirest.turisclub.cl/api/Programs/List", configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Programs/List`, configuracion);
     var response = await result.json();
     return response.entities;
 }
 
-const getProgramDetail = async (token, IDPrograma, CurrencyCode) => {
-
+export const getProgramDetail = async (IDPrograma, CurrencyCode) => {
+    var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "GET",
         headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.value,
             "Content-type": "application/json",
         }
     };
 
-    var result = await fetch(`https://apirest.turisclub.cl/api/Programs/retrieve/${IDPrograma}/${CurrencyCode == null ? 'USD' : CurrencyCode}`, configuracion);
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Programs/retrieve/${IDPrograma}/${CurrencyCode == null ? 'USD' : CurrencyCode}`, configuracion);
     var response = await result.json();
 
     return response.entity;
 }
 
-export { obtenerToken, pedirMoneda, getSlider, getBanners, getDestinos, getProgramList, getProgramDetail };
+
 export default Apis;

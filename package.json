@@ -13,8 +13,14 @@
     "react-icons": "^4.11.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.21.0",
+<<<<<<< HEAD
     "react-scripts": "^5.0.1",
     "universal-cookie": "^6.1.1",
+=======
+    "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
+    "swiper": "^11.0.5",
+>>>>>>> mario
     "web-vitals": "^2.1.4"
   },
   "scripts": {
