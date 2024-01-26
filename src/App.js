@@ -1,4 +1,4 @@
-import React, {useState, useEffect, isValidElement} from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import './App.css';
 import Contactenos from './components/Contactenos';
@@ -9,11 +9,17 @@ import {Slider} from './components/Slider';
 import {getSlider, pedirMoneda } from "./components/api/Apis";
 import { useQuery } from "@tanstack/react-query";
 import {HashLoader} from 'react-spinners';
+import { obtenerToken } from "./components/api/ApiNextravel";
 
 function App() {
-const [loading, setLoading] = useState(false);
 
+  //obtenemos el token del servicio de Nextravel.
 
+  const tokenNextravel = useQuery({
+    queryKey: ['tokenNextravel'],
+    queryFn: ()=> obtenerToken()
+  })
+console.log('Token en APP: ', tokenNextravel.data?.value)
   // pedimos el cambio
   const cambio = useQuery({
     queryKey: ["change"],
@@ -25,22 +31,15 @@ const [loading, setLoading] = useState(false);
     queryKey: ["slider"],
     queryFn: () => getSlider('USD')
   });
- console.log('Valor de Carousel: ', carousel.data)
- console.log('Valor del Loading: ', loading);
-  useEffect(()=>{
-    setLoading(true);
-    setTimeout(()=>{
-         setLoading(false);
-    }, 3000)
-    
-  }, [])
+
+  useEffect(()=>{}, [])
 
  return (<>
       {
-        loading ? 
+        carousel.isLoading ? 
         <HashLoader
         color={'#d3761b'}
-        loading={loading}
+        loading={carousel.isLoading}
         size={70}
         aria-label="Loading Spinner"
         data-testid="loader"
@@ -52,7 +51,7 @@ const [loading, setLoading] = useState(false);
         <Menu change={cambio}/>
         <Slider items={carousel} />
         <QuienesSomos />
-        <Contactenos />
+        <Contactenos token={tokenNextravel.data?.value}/>
         <Footer />
       </div>
       }
