@@ -29,3 +29,63 @@
 .logo img{
     width: 170px;
 }
+
+
+.menu-top :nth-child(2) .hambur{
+    display: none;
+}
+
+@media(max-width:360px)
+{
+
+
+    
+.menu-top{
+    display: flex;
+    background-color: white;
+    height: 12vh;
+    flex:1;
+    justify-content: space-between;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 120px;
+    position: sticky;
+    z-index: 1000;
+    width: 100vw;
+}
+
+
+
+    .menu-top :nth-child(2) ul{
+        display: flex;
+        flex-direction: column;
+        z-index: 2000;
+       position: fixed;
+        margin-left: -10px;
+        background-color: white;
+        padding: 10px;
+        width: 150px;
+        padding-top: 100px;
+        top:0;
+        right: 0;
+        bottom: 0;
+        
+       
+        top:-20px;
+        gap: 20px;
+        visibility:hidden;
+    
+    }
+
+    .menu-top :nth-child(2) .hambur{
+        scale: 2;
+        position: absolute;
+        margin-top:-10px;
+        display: flex;
+        margin-left: 80px;
+        z-index: 3000;
+        cursor: pointer;
+        
+       
+    }
+}
