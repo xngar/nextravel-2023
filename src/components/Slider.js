@@ -52,7 +52,7 @@ export const Slider = ({ cambio, items }) => {
                 return <SwiperSlide key={i} style={{ height: '90vh' }} onClick={() => onClickMe(item)}>
                     <img src={`${process.env.REACT_APP_TURISCLUB_PATH_MEDIA}${item.Src}`} style={{ height: '90vh', width: '100%' }} alt=''></img>
                     <h3>{item && item.ProgramaPrecioTxt} {formatter.format(item.ProgramaPrecioUSD).replace("$", `${CurrencySeleted()} `).replace(",", ".")}</h3>
-                    <p>valor en pesos Chilenos: {formatter.format(item.ProgramaPrecioUSD * cambio.data.CambioContado).replace(",", ".")}</p>
+                    <p>valor en pesos Chilenos: {formatter.format(item.ProgramaPrecioUSD * cambio.data?.CambioContado).replace(",", ".")}</p>
                 </SwiperSlide>
             })}
         </Swiper>
