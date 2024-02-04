@@ -7,6 +7,17 @@
     
 }
 
+
+.wrapperDestinos :nth-child(1){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+   background-color: red;
+       
+}
+
+
 .container{
     background-color: white;
     display: grid;

@@ -14,6 +14,7 @@ import { Areas } from "./Pages/Areas";
 // import {Destinos} from './Pages/Destinos';
 import { Programas } from './Pages/Programas';
 import { Programa } from "./Pages/Programa";
+import Destinos from "./components/Destinos";
 function App() {
 
   //obtenemos el token del servicio de Nextravel.
@@ -55,6 +56,7 @@ function App() {
           <Menu change={cambio} />
           <Slider items={carousel} cambio={cambio} />
           <QuienesSomos />
+          <Destinos />
           <Contactenos token={tokenNextravel.data?.value} />
           <Footer />
 

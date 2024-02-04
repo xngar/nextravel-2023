@@ -19,8 +19,10 @@ const Destinos = () => {
 
     return (
         <div className='wrapperDestinos'>
+            <div>
+                <h2>Destinos</h2>
+            </div>
             <div className='container'>
-
 
 
 
