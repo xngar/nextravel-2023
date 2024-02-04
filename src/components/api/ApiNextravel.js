@@ -1,14 +1,7 @@
-import { useContext } from "react";
-import { contexto } from "../contexto/contexto";
-
+import React from "react";
 
 const ApiNextravel = () => {
-    const context1 = useContext(contexto);
-
-    // Resto del código...
-    return (
-        <div> Servicio Nextravel</div>
-    );
+    return (<></>);
 };
 
 const obtenerToken = async() => {
@@ -17,31 +10,37 @@ const obtenerToken = async() => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ Username: "appreact", Password: "appreact23" }),
+        body: JSON.stringify({ Username: process.env.REACT_APP_API_NEXTRAVEL_USERNAME, 
+                               Password: process.env.REACT_APP_API_NEXTRAVEL_PASSWORD }),
     };
-   var retorno =  await fetch("https://service.nextravel.cl/api/Auth/Login", rawLogin);
+   var retorno =  await fetch(`${process.env.REACT_APP_API_NEXTRAVEL_URL}/api/Auth/Login`, rawLogin);
    var respuesta = await retorno.json();
     return respuesta;
     
 };
 
-const sendEmail = async(token, email) => {
-    let rawLogin = {
+const sendEmail = async (token, email) => {
+   //let token = await obtenerToken().then(auth => auth);
+   console.log('Token: ', token.token);
+   console.log('Datos del Email en el endPoint: ', email)
+
+    let raw = {
         method: "POST",
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token.token}`,
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
             Name : email.name,  //"Mario GutierreZ",
             Phone : email.phone, //"123456789",
             Email : email.email, //"mario@upcode.cl",
-            Subject: email.subject, //"Asunto de Testing 2",
+            Subject : email.subject, //"Asunto de Testing 2",
             Message : email.message  //"Provando la API de servicio de correo"
         }),
     };
-   var retorno =  await fetch("https://service.nextravel.cl/api/Auth/Login", rawLogin);
+   var retorno =  await fetch(`${process.env.REACT_APP_API_NEXTRAVEL_URL}/api/Mail/Contacto`, raw);
    var respuesta = await retorno.json();
+  
     return respuesta;
     
 };
