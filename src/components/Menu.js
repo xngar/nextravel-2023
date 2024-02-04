@@ -1,14 +1,18 @@
 import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import "./Menu.css";
 import { SelectCurrency } from '../utils/SelectCurrency';
 import { Change } from '../utils/Change';
 
 
 export const Menu = ({change}) => {
+    let uri = document.location.origin;
     return (
         <nav className='menu-top' >
             <div className='logo'>
-                <img src="./img/logo-next-travel.png" alt=''/>
+            <a href='/'>
+            <img src={`${uri}/img/logo-next-travel.png`} alt=''/>
+            </a>
 
             </div>
             <div>
@@ -19,8 +23,32 @@ export const Menu = ({change}) => {
                     <li>Destinos</li>
                     <li>Programas</li>
                     <li>Contacto</li>
-                    <li><SelectCurrency/></li>
+                    {/* <li><SelectCurrency/></li> */}
                 </ul>
+                 {/* <Router>
+       
+          
+          <Switch>
+            <Route path="/areas/:IdArea" >
+              <Areas />
+            </Route>
+            <Route path="/ProgramasList/:IdArea/:Id" >
+              <Programas />
+            </Route>
+            <Route path="/Programa/:IdPrograma" >
+              <Programa />
+            </Route>
+            <Route path="/" exact={true}>
+
+              <Home />
+            </Route>
+
+            <Route path="/contacto" exact={true}>
+              <Contacto />
+            </Route>
+
+          </Switch>
+        </Router> */}
             </div>
 
         </nav>

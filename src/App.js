@@ -10,7 +10,10 @@ import {getSlider, pedirMoneda } from "./components/api/Apis";
 import { useQuery } from "@tanstack/react-query";
 import {HashLoader} from 'react-spinners';
 import { obtenerToken } from "./components/api/ApiNextravel";
-
+import { Areas } from "./Pages/Areas";
+// import {Destinos} from './Pages/Destinos';
+import {Programas} from './Pages/Programas';
+import { Programa } from "./Pages/Programa";
 function App() {
 
   //obtenemos el token del servicio de Nextravel.
@@ -19,7 +22,7 @@ function App() {
     queryKey: ['tokenNextravel'],
     queryFn: ()=> obtenerToken()
   })
-console.log('Token en APP: ', tokenNextravel.data?.value)
+
   // pedimos el cambio
   const cambio = useQuery({
     queryKey: ["change"],
@@ -48,11 +51,14 @@ console.log('Token en APP: ', tokenNextravel.data?.value)
       />
         :
         <div className="App">
-        <Menu change={cambio}/>
-        <Slider items={carousel} />
+      
+      <Menu change={cambio}/>
+        <Slider items={carousel} cambio={cambio} />
         <QuienesSomos />
         <Contactenos token={tokenNextravel.data?.value}/>
         <Footer />
+       
+
       </div>
       }
   </>);
