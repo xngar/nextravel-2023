@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useState, useEffect, isValidElement } from "react";
-=======
 import React, { useEffect } from "react";
->>>>>>> mario
 import "./index.css";
 import './App.css';
 import Contactenos from './components/Contactenos';
@@ -12,26 +8,19 @@ import QuienesSomos from './components/QuienesSomos';
 import { Slider } from './components/Slider';
 import { getSlider, pedirMoneda } from "./components/api/Apis";
 import { useQuery } from "@tanstack/react-query";
-<<<<<<< HEAD
 import { HashLoader } from 'react-spinners';
-
-function App() {
-  const [loading, setLoading] = useState(false);
-=======
-import {HashLoader} from 'react-spinners';
 import { obtenerToken } from "./components/api/ApiNextravel";
 import { Areas } from "./Pages/Areas";
 // import {Destinos} from './Pages/Destinos';
-import {Programas} from './Pages/Programas';
+import { Programas } from './Pages/Programas';
 import { Programa } from "./Pages/Programa";
 function App() {
->>>>>>> mario
 
   //obtenemos el token del servicio de Nextravel.
 
   const tokenNextravel = useQuery({
     queryKey: ['tokenNextravel'],
-    queryFn: ()=> obtenerToken()
+    queryFn: () => obtenerToken()
   })
 
   // pedimos el cambio
@@ -45,23 +34,15 @@ function App() {
     queryKey: ["slider"],
     queryFn: () => getSlider('USD')
   });
-<<<<<<< HEAD
-  console.log('Valor de Carousel: ', carousel.data)
-  console.log('Valor del Loading: ', loading);
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000)
 
-  }, [])
+  useEffect(() => { }, [])
 
   return (<>
     {
-      loading ?
+      carousel.isLoading ?
         <HashLoader
           color={'#d3761b'}
-          loading={loading}
+          loading={carousel.isLoading}
           size={70}
           aria-label="Loading Spinner"
           data-testid="loader"
@@ -70,42 +51,16 @@ function App() {
         />
         :
         <div className="App">
+
           <Menu change={cambio} />
-          <Slider items={carousel} />
+          <Slider items={carousel} cambio={cambio} />
           <QuienesSomos />
-          <Contactenos />
+          <Contactenos token={tokenNextravel.data?.value} />
           <Footer />
+
+
         </div>
     }
-=======
-
-  useEffect(()=>{}, [])
-
- return (<>
-      {
-        carousel.isLoading ? 
-        <HashLoader
-        color={'#d3761b'}
-        loading={carousel.isLoading}
-        size={70}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-        style={{float:'center'}}
-        
-      />
-        :
-        <div className="App">
-      
-      <Menu change={cambio}/>
-        <Slider items={carousel} cambio={cambio} />
-        <QuienesSomos />
-        <Contactenos token={tokenNextravel.data?.value}/>
-        <Footer />
-       
-
-      </div>
-      }
->>>>>>> mario
   </>);
 }
 
