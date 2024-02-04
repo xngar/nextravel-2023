@@ -35,6 +35,7 @@ export const Slider = ({cambio,items}) => {
     return (<>
   
    <Swiper
+   style={{cursor:'pointer'}}
      modules={[Navigation, Pagination, Scrollbar, A11y, EffectFlip, EffectCards, EffectCoverflow, Autoplay]}
       spaceBetween={50}
       slidesPerView={1}
@@ -45,7 +46,7 @@ export const Slider = ({cambio,items}) => {
       }}
       navigation
       scrollbar={{ draggable: true }}
-    
+      
       >
         {items.data?.map((item, i) => {
              return <SwiperSlide key={i} style={{height:'90vh'}} onClick={()=> onClickMe(item)}>

@@ -25,30 +25,7 @@ export const Menu = ({change}) => {
                     <li>Contacto</li>
                     {/* <li><SelectCurrency/></li> */}
                 </ul>
-                 {/* <Router>
-       
-          
-          <Switch>
-            <Route path="/areas/:IdArea" >
-              <Areas />
-            </Route>
-            <Route path="/ProgramasList/:IdArea/:Id" >
-              <Programas />
-            </Route>
-            <Route path="/Programa/:IdPrograma" >
-              <Programa />
-            </Route>
-            <Route path="/" exact={true}>
-
-              <Home />
-            </Route>
-
-            <Route path="/contacto" exact={true}>
-              <Contacto />
-            </Route>
-
-          </Switch>
-        </Router> */}
+                 
             </div>
 
         </nav>
