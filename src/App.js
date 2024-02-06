@@ -6,14 +6,14 @@ import Footer from './components/Footer';
 import { Menu } from './components/Menu';
 import QuienesSomos from './components/QuienesSomos';
 import { Slider } from './components/Slider';
-import { getSlider, pedirMoneda } from "./components/api/Apis";
+import { getSlider, pedirMoneda, getBanners } from "./components/api/Apis";
 import { useQuery } from "@tanstack/react-query";
 import { HashLoader } from 'react-spinners';
 import { obtenerToken } from "./components/api/ApiNextravel";
-import { Areas } from "./Pages/Areas";
+//import { Areas } from "./Pages/Areas";
 // import {Destinos} from './Pages/Destinos';
-import { Programas } from './Pages/Programas';
-import { Programa } from "./Pages/Programa";
+// import { Programas } from './Pages/Programas';
+// import { Programa } from "./Pages/Programa";
 import Destinos from "./components/Destinos";
 function App() {
 
@@ -36,6 +36,12 @@ function App() {
     queryFn: () => getSlider('USD')
   });
 
+  const destiny = useQuery({
+    queryKey:['destiny'],
+    queryFn: ()=> getBanners()
+}) ;
+
+
   useEffect(() => { }, [])
 
   return (<>
@@ -56,7 +62,7 @@ function App() {
           <Menu change={cambio} />
           <Slider items={carousel} cambio={cambio} />
           <QuienesSomos />
-          <Destinos />
+          <Destinos items={destiny} />
           <Contactenos token={tokenNextravel.data?.value} />
           <Footer />
 

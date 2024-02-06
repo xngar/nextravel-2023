@@ -100,6 +100,7 @@ export const getDestinos = async ( IDArea) => {
 }
 
 export const getProgramList = async (IDArea, IDDestino, CurrencyCode) => {
+   
     var token = await obtenerToken().then( auth => auth);
     const configuracion = {
         method: "POST",
@@ -108,7 +109,7 @@ export const getProgramList = async (IDArea, IDDestino, CurrencyCode) => {
             "Content-type": "application/json",
         },
         body: JSON.stringify({
-            EqualityFilter: { "IDArea": IDArea, "IdDestino": IDDestino },
+            EqualityFilter: { "IDArea": IDArea, "IdDestino": IDDestino, "Activo": true},
             CurrencyCode: CurrencyCode == null ? 'USD' : CurrencyCode
         }),
     };

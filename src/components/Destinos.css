@@ -1,12 +1,7 @@
 
 .wrapperDestinos{
-   
-    
-    
-    background-color: white;
-    
+   background-color: white;
 }
-
 
 .wrapperDestinos :nth-child(1){
     display: flex;
@@ -14,9 +9,7 @@
     align-items: center;
     font-size: 30px;
    background-color: red;
-       
 }
-
 
 .container{
     background-color: white;
