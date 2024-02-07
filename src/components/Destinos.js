@@ -7,7 +7,6 @@ import { HashLoader } from 'react-spinners';
 const Destinos = ({items}) => {
 
     const figura = useRef(null);
-    const figura2 = useRef(null);
 
 
     function figuraAnim(figura) {

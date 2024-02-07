@@ -3,7 +3,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { getProgramList } from '../components/api/Apis';
 import { CurrencySeleted } from '../utils/helpers';
-import { HashLoader } from 'react-spinners';
+import { CircleLoader } from 'react-spinners';
+import { Menu } from '../components/Menu';
+import Footer from '../components/Footer';
 
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -21,16 +23,9 @@ export const Programas = () => {
         queryFn: ()=> getProgramList(IdArea, Id, 'USD')
     })
      console.log('Entities: ', programs.data)
-    return(<> {programs.isLoading ?
-             <HashLoader
-            color={'#d3761b'}
-            loading={programs.isLoading}
-            size={70}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-            style={{ float: 'center' }}
-  
-          /> : 
+    return(<> <Menu/>
+    {programs.isLoading ?
+             <CircleLoader size={100} color="#d3761b"/> : 
             programs.data?.map((item, i)=>{
                       
                 return <>
@@ -56,5 +51,6 @@ export const Programas = () => {
                                 </div> </>
             })
         }
+        <Footer/>
     </>);
 }

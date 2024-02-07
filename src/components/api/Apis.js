@@ -81,6 +81,42 @@ export const getBanners = async () => {
     return response.entities;
 }
 
+export const getCategoryHotel = async (entityId) => {
+    var token = await obtenerToken().then( auth => auth);
+    const configuracion = {
+        method: "POST",
+        headers: {
+            Authorization: "Bearer " + token.value,
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+            EntityId:entityId
+        }),
+    };
+
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Definitions/CategoryHotel`, configuracion);
+    var response = await result.json();
+    return response.entity;
+}
+
+export const getHotel = async (entityId) => {
+    var token = await obtenerToken().then( auth => auth);
+    const configuracion = {
+        method: "POST",
+        headers: {
+            Authorization: "Bearer " + token.value,
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+            EntityId:entityId
+        }),
+    };
+
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Definitions/Hotel`, configuracion);
+    var response = await result.json();
+    return response.entity;
+}
+
 export const getDestinos = async ( IDArea) => {
     var token = await obtenerToken().then( auth => auth);
     const configuracion = {
