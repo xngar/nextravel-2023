@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import { Menu } from '../components/Menu';
 import Footer from '../components/Footer';
 import { useQuery } from '@tanstack/react-query';
-import { getProgramDetail, getHotel,getCategoryHotel } from '../components/api/Apis';
+import { getProgramDetail, pedirMoneda } from '../components/api/Apis';
 import { CurrencySeleted, isHotelColumn } from '../utils/helpers';
 
 const formatter = new Intl.NumberFormat('en-US', {
@@ -21,6 +21,12 @@ const programDetail = useQuery({
    queryFn: ()=> getProgramDetail(IdPrograma, currency)
 });
 
+const getChange = useQuery({
+queryKey:['change'],
+queryFn: ()=> pedirMoneda()
+});
+
+const changeCont = getChange.data?.CambioContado;
 
 const HeaderProgram = ({program}) => {
    
@@ -41,6 +47,8 @@ const HeaderProgram = ({program}) => {
                                   <h4>{program?.SubTitulo}</h4>
                                   <p className="text-muted">{program?.PrecioTxt}</p>
                                   <h1 className="text-center price-detail"> {formatter.format(program?.PrecioUsd).replace(",", ".").replace('$', CurrencySeleted())}</h1>
+                                  <p>valor del tipo de cambio: ${changeCont}</p>
+                                  <p>equivalencia en pesos chilenos: {formatter.format(program?.PrecioUsd * changeCont).replace(",", ".").replace(",",".")}</p>
                                   <span className="tour-duration"><a href="#"><b>{program?.Dias + " días / " + program?.Noches + " noches"}</b></a></span>
 
                                   {/*<span className="date"><a href="#">14 March 2016</a></span>*/}
