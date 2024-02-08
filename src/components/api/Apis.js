@@ -181,7 +181,8 @@ export const getProgramMoreViews = async () => {
             "Content-type": "application/json",
         },
         body: JSON.stringify({
-            Take: 100,
+            Take: 50,
+            Sort:['Id desc'],
             EqualityFilter: { "Activo": true},
             CurrencyCode: 'USD'
         }),

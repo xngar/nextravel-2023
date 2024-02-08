@@ -21,8 +21,8 @@ const obtenerToken = async() => {
 
 const sendEmail = async (token, email) => {
    //let token = await obtenerToken().then(auth => auth);
-   console.log('Token: ', token.token);
-   console.log('Datos del Email en el endPoint: ', email)
+//    console.log('Token: ', token.token);
+//    console.log('Datos del Email en el endPoint: ', email)
 
     let raw = {
         method: "POST",
@@ -38,10 +38,10 @@ const sendEmail = async (token, email) => {
             Message : email.message  //"Provando la API de servicio de correo"
         }),
     };
-   var retorno =  await fetch(`${process.env.REACT_APP_API_NEXTRAVEL_URL}/api/Mail/Contacto`, raw);
-   var respuesta = await retorno.json();
+   var returno =  await fetch(`${process.env.REACT_APP_API_NEXTRAVEL_URL}/api/Mail/Contacto`, raw);
+   var response = await returno.json();
   
-    return respuesta;
+    return response;
     
 };
 

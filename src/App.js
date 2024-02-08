@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./index.css";
 import './App.css';
 import Contactenos from './components/Contactenos';
@@ -10,10 +10,7 @@ import { getSlider, pedirMoneda, getBanners, getProgramMoreViews } from "./compo
 import { useQuery } from "@tanstack/react-query";
 import { HashLoader } from 'react-spinners';
 import { obtenerToken } from "./components/api/ApiNextravel";
-//import { Areas } from "./Pages/Areas";
-// import {Destinos} from './Pages/Destinos';
-// import { Programas } from './Pages/Programas';
-// import { Programa } from "./Pages/Programa";
+
 import Destinos from "./components/Destinos";
 import ProgramsViews from './components/ProgramRandom';
 function App() {
@@ -40,15 +37,12 @@ function App() {
   const destiny = useQuery({
     queryKey:['destiny'],
     queryFn: ()=> getBanners()
-}) ;
+  }) ;
 
 const programRandom = useQuery({
   queryKey:['more-views'],
   queryFn: ()=> getProgramMoreViews()
 }) ;
-
-console.log('Programas Random: en APP: ', programRandom.data);
-  useEffect(() => { }, [])
 
   return (<>
     {
