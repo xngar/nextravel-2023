@@ -171,5 +171,25 @@ export const getProgramDetail = async (IDPrograma, CurrencyCode) => {
     return response.entity;
 }
 
+export const getProgramMoreViews = async () => {
+   
+    var token = await obtenerToken().then( auth => auth);
+    const configuracion = {
+        method: "POST",
+        headers: {
+            Authorization: "Bearer " + token.value,
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+            Take: 100,
+            EqualityFilter: { "Activo": true},
+            CurrencyCode: 'USD'
+        }),
+    };
+
+    var result = await fetch(`${process.env.REACT_APP_API_TURISCLUB_URL}/api/Programs/More-Views`, configuracion);
+    var response = await result.json();
+    return response.entities;
+}
 
 export default Apis;

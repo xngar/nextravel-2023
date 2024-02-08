@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import { Menu } from './components/Menu';
 import QuienesSomos from './components/QuienesSomos';
 import { Slider } from './components/Slider';
-import { getSlider, pedirMoneda, getBanners } from "./components/api/Apis";
+import { getSlider, pedirMoneda, getBanners, getProgramMoreViews } from "./components/api/Apis";
 import { useQuery } from "@tanstack/react-query";
 import { HashLoader } from 'react-spinners';
 import { obtenerToken } from "./components/api/ApiNextravel";
@@ -15,6 +15,7 @@ import { obtenerToken } from "./components/api/ApiNextravel";
 // import { Programas } from './Pages/Programas';
 // import { Programa } from "./Pages/Programa";
 import Destinos from "./components/Destinos";
+import ProgramsViews from './components/ProgramRandom';
 function App() {
 
   //obtenemos el token del servicio de Nextravel.
@@ -41,7 +42,12 @@ function App() {
     queryFn: ()=> getBanners()
 }) ;
 
+const programRandom = useQuery({
+  queryKey:['more-views'],
+  queryFn: ()=> getProgramMoreViews()
+}) ;
 
+console.log('Programas Random: en APP: ', programRandom.data);
   useEffect(() => { }, [])
 
   return (<>
@@ -63,6 +69,7 @@ function App() {
           <Slider items={carousel} cambio={cambio} />
           <QuienesSomos />
           <Destinos items={destiny} />
+          <ProgramsViews Items={programRandom} change={cambio}/>
           <Contactenos token={tokenNextravel.data?.value} />
           <Footer />
 
