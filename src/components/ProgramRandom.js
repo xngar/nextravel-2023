@@ -46,7 +46,7 @@ const formatter = new Intl.NumberFormat('en-US', {
       >
       {Items.isLoading ? <CircleLoader size={100} color="#d3761b"/> : 
                               randomItems.map((item, i) => (
-                              <SwiperSlide>
+                              <SwiperSlide key={i}>
                                 <img  src={ process.env.REACT_APP_TURISCLUB_PATH_MEDIA + item.Imagen} alt={item.Titulo} width="640" height="420" />
                              </SwiperSlide>
                              )) }
