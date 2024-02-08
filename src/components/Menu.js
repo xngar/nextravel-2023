@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import "./Menu.css";
 import { SelectCurrency } from '../utils/SelectCurrency';
@@ -8,7 +8,14 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 export const Menu = ({ change }) => {
     let uri = document.location.origin;
-    const [menu, setMenu] = useState(false);
+    const [menu, setMenu] = useState(true);
+    const mostrarBoton = useRef(null);
+
+    function abrirMenu() {
+        mostrarBoton.current.classList.toggle("abrir");
+
+    }
+
     return (
         <nav className='menu-top' >
             <div className='logo'>
@@ -19,8 +26,8 @@ export const Menu = ({ change }) => {
             </div>
             <div>
 
-                <GiHamburgerMenu className='hambur' onClick={() => setMenu(!menu)} />
-                <ul style={{ visibility: menu ? "visible" : "hidden" }}>
+                <GiHamburgerMenu className='hambur' onClick={abrirMenu} />
+                <ul ref={mostrarBoton}>
                     <Change change={change} />
                     <li>Home</li>
                     <li>¿Quienes somos?</li>

@@ -3,7 +3,7 @@
     background-color: aqua;
     width: 100vw;
     
-    height: 80vh;
+    
     position: relative;
     overflow: hidden;
     padding-left: 60px;
@@ -17,4 +17,25 @@
        z-index: 999;
       
    }
+
+   .informacionPrecio{
+    position: absolute;
+    color:red;
+   }
+
+   img.imagen_swi {
+    object-fit: cover;
+}
+
+.swipper{
+     position: relative;
+     overflow: hidden;
+}
+
+   @media(max-width:360px)
+{
+
+
+    
+}
    

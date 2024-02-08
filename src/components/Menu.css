@@ -10,6 +10,7 @@
     padding-right: 120px;
     visibility: visible;
     width: 100vw;
+    position: relative;
 }
 
 .menu-top ul{
@@ -23,6 +24,14 @@
 .menu-top ul > li{
     cursor: pointer;
     font-weight: bold;
+
+}
+
+.menu-top.abrir ul{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    color:blue
 
 }
 
@@ -41,17 +50,8 @@
 
     
 .menu-top{
-    display: flex;
-    background-color: white;
-    height: 12vh;
-    flex:1;
-    justify-content: space-between;
-    padding: 20px;
-    padding-left: 40px;
-    padding-right: 120px;
-    position: sticky;
-    z-index: 1000;
-    width: 100vw;
+   
+    
 }
 
 
@@ -77,9 +77,30 @@
     
     }
 
+    .menu-top :nth-child(2) ul.abrir{
+        display: flex;
+        flex-direction: column;
+        z-index: 2000;
+       position: fixed;
+        margin-left: -10px;
+        background-color: white;
+        padding: 10px;
+        width: 150px;
+        padding-top: 100px;
+        top:0;
+        right: 0;
+        bottom: 0;
+        
+       
+        top:-20px;
+        gap: 20px;
+        visibility:visible;
+    
+    }
+
     .menu-top :nth-child(2) .hambur{
         scale: 2;
-        position: absolute;
+        position: fixed;
         margin-top:-10px;
         display: flex;
         margin-left: 80px;

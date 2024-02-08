@@ -7,8 +7,32 @@
     color: white;
     position: relative;
     z-index: 100;
+    overflow-y: hidden;
 }
 .quienes-somos h3{
     font-size: 30px;
     margin-bottom: 10px;
+}
+
+@media(max-width:360px){
+    .quienes-somos h3{
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .quienes-somos p{
+        font-size: 12px;
+    }
+
+    .quienes-somos{
+        width: 100vw;
+        height: 350px;
+        background-color:var(--naranjoclaro);
+        padding: 15px;
+        text-align: justify;
+        color: white;
+        position: relative;
+        z-index: 100;
+        overflow-y: hidden;
+    }
 }

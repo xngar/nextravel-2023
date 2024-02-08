@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { CircleLoader } from 'react-spinners';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-
+import 'swiper/css/free-mode';
+import "./ProgramRandom.css"
 
 
 import {  Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFlip, EffectCards, EffectCoverflow , EffectFade } from 'swiper/modules';
@@ -37,9 +38,15 @@ const formatter = new Intl.NumberFormat('en-US', {
      <Swiper
      slidesPerView={3}
      spaceBetween={30}
+     freeMode={true}
      autoplay={{delay:2000}}
      pagination={{
        clickable: true,
+     }}
+     breakpoints={{
+      0:{
+        slidesPerView:1
+      }
      }}
      modules={[Pagination, Autoplay]}
      className="mySwiper"

@@ -79,3 +79,13 @@ figure.activo span{
     
 }
 
+@media(max-width:360px){
+
+    .container{
+        background-color: white;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+
+}
