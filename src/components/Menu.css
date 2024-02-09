@@ -73,7 +73,8 @@
        
         top:-20px;
         gap: 20px;
-        visibility:hidden;
+        opacity: 0;
+        transition: all .3s ease-in-out;
     
     }
 
@@ -90,11 +91,11 @@
         top:0;
         right: 0;
         bottom: 0;
-        
+        transition: all .3s ease-in-out;
        
         top:-20px;
         gap: 20px;
-        visibility:visible;
+        opacity: 1;
     
     }
 
