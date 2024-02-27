@@ -79,7 +79,7 @@ figure.activo span{
     
 }
 
-@media(max-width:360px){
+@media(min-width:320px) and (max-width:768px){
 
     .container{
         background-color: white;
